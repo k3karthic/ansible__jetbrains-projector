@@ -19,6 +19,7 @@
           - libxtst6
           - libfreetype6
           - libxi6
+          - openjdk-11-jdk
         state: present
 
 - name: install python pips
