@@ -32,3 +32,31 @@
           - projector-installer
         virtualenv: ~/.projectorenv
         virtualenv_command: virtualenv -p python3 --system-site-packages
+
+- name: configure iptables
+  hosts: all
+  become: yes
+  tasks:
+    - name: open tcp 9999
+      ansible.builtin.iptables:
+        action: insert
+        chain: INPUT
+        protocol: tcp
+        destination_port: 9999
+        ctstate: NEW
+        jump: ACCEPT
+        comment: Allow JetBrains Projector communication
+
+    - name: open udp 9999
+      ansible.builtin.iptables:
+        action: insert
+        chain: INPUT
+        protocol: udp
+        destination_port: 9999
+        ctstate: NEW
+        jump: ACCEPT
+        comment: Allow JetBrains Projector UDP communication
+
+    - name: save iptables
+      ansible.builtin.shell:
+        cmd: iptables-save > /etc/iptables/rules.v4
