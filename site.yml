@@ -1,0 +1,33 @@
+---
+- name: install python virtualenv
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: update repositories
+      ansible.builtin.apt:
+        cache_valid_time: 86400
+        update_cache: yes
+
+    - name: install dependencies
+      ansible.builtin.apt:
+        name:
+          - python3-virtualenv
+          - less
+          - libxext6
+          - libxrender1
+          - libxtst6
+          - libfreetype6
+          - libxi6
+        state: present
+
+- name: install python pips
+  hosts: all
+  tasks:
+    - name: install pips
+      ansible.builtin.pip:
+        name:
+          - cryptography
+          - projector-installer
+        virtualenv: ~/.projectorenv
+        virtualenv_command: virtualenv -p python3 --system-site-packages
