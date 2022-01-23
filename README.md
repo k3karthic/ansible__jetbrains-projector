@@ -1,6 +1,6 @@
 # Ansible — JetBrains Projector
 
-This playbook installs [JetBrains Projector](https://lp.jetbrains.com/projector/) on a Debian/Ubuntu instance. Nginx will handle the HTTPS connection from the browser (`https://<domain_name>:9999`) and connect to the Projector client on `http://127.0.0.1:9998`.
+This playbook installs [JetBrains Projector](https://lp.jetbrains.com/projector/) on a Debian/Ubuntu instance. Nginx will handle the HTTPS connection from the browser (`https://<domain_name>:9999`) and connect to the Projector client on `http://127.0.0.1:9998`. [LetsEncrypt](https://letsencrypt.org/) is used to create the HTTPS certificate.
 
 Configure projector (using `projector config edit`) as follows,
 * Listening port: `9998`
@@ -38,7 +38,7 @@ All target Ubuntu instances must have the freeform tag `jetbrains_projector: yes
 1. Create an inventory file for the instance in `inventory/group_vars/`. Use `inventory/group_vars/tag_ydns_host=mg-oracle3.ydns.eu.yml.sample` as a reference. Specify the following variables,
 
 	2. `domain_name`: The domain name assigned to the instance
-	3. `letsencrypt_email`: Your email address to register with [LetsEncrypt](https://letsencrypt.org/)
+	3. `letsencrypt_email`: Your email address to register with LetsEncrypt
 3. Update `inventory/oracle.oci.yml`,
     1. Specify the region where you have deployed your server on Oracle Cloud. List of regions are at [docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm).
     1. Configure the authentication as per the [Oracle Guide](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm#SDK_and_CLI_Configuration_File)
