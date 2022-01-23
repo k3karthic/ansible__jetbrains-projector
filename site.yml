@@ -6,6 +6,8 @@
     - apt
     - iptables
     - fail2ban
+    - nginx
+    - certbot
 
 - name: install python pips
   hosts: all
