@@ -1,0 +1,8 @@
+---
+- name: install pips
+  ansible.builtin.pip:
+    name:
+      - cryptography
+      - projector-installer
+    virtualenv: ~/.projectorenv
+    virtualenv_command: virtualenv -p python3 --system-site-packages

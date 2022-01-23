@@ -1,0 +1,19 @@
+---
+- name: update repositories
+  ansible.builtin.apt:
+    cache_valid_time: 86400
+    update_cache: yes
+
+- name: install dependencies
+  ansible.builtin.apt:
+    name:
+      - python3-virtualenv
+      - less
+      - libxext6
+      - libxrender1
+      - libxtst6
+      - libfreetype6
+      - libxi6
+      - openjdk-11-jdk
+      - nginx
+    state: present
