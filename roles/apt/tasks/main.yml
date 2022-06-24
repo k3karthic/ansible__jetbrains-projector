@@ -15,6 +15,4 @@
       - libfreetype6
       - libxi6
       - openjdk-11-jdk
-      - nginx
-      - certbot
     state: present

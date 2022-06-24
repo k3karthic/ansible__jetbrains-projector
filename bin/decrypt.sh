@@ -7,8 +7,6 @@ function decrypt {
     fi
 }
 
-decrypt inventory/group_vars/ydns.yml
-
 FILES=$(ls ssh/oracle*.gpg)
 for f in $FILES; do
     decrypt $( echo $f | sed 's/\.gpg//' )
